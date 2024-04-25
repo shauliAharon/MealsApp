@@ -1,4 +1,5 @@
 import {
+  Button,
   FlatList,
   Image,
   ScrollView,
@@ -11,10 +12,25 @@ import { useLayoutEffect } from "react";
 import DetailsItem from "../components/DetailsItem";
 import SubTitle from "../components/MealDetail/SubTitle";
 import List from "../components/MealDetail/List";
+import PrimaryButton from "../components/PrimaryButton";
 
 function DetailsMealScreen({ route, navigation }) {
   const mealId = route.params.mealId;
+
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  function headerButtonPressHandler() {
+    console.log("top meee");
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return <PrimaryButton onPress={headerButtonPressHandler}>Top me!</PrimaryButton>;
+      },
+    });
+  }, [navigation, headerButtonPressHandler]);
+
   return (
     <ScrollView style={styles.container}>
       <Image style={styles.image} source={{ uri: selectedMeal.imageUrl }} />
