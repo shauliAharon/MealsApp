@@ -1,9 +1,12 @@
 import { Image, Platform, StyleSheet, Text, View } from "react-native";
 
-function DetailsItem({ steps }) {
+function DetailsItem({ duration, complexity, affordability ,style,textStyle}) {
   return (
-    <View style={styles.mealItem}>
-      <Text style={styles.title}>STEPS {steps}</Text>
+    <View style={[styles.details, style]}>
+      <Text style={[styles.detailsItem,textStyle]}> {duration} M</Text>
+      <Text style={[styles.detailsItem,textStyle]}> {complexity.toUpperCase()}</Text>
+      <Text style={[styles.detailsItem,textStyle]}>{affordability.toUpperCase()}</Text>
+      {/* <Text>STEPS {steps}</Text> */}
     </View>
   );
 }
@@ -11,44 +14,14 @@ function DetailsItem({ steps }) {
 export default DetailsItem;
 
 const styles = StyleSheet.create({
-  mealItem: {
-    margin: 16,
-    borderRadius: 8,
-    overflow: "hidden",
-    backgroundColor: "white",
-    elevation: 4,
-    shadowColor: "black",
-    shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    overflow: Platform.OS === "android" ? "hidden" : "visible",
+  details: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 8,
+    justifyContent: "center",
   },
-  //   innerContainer: {
-  //     borderRadius: 8,
-  //     overflow: "hidden",
-  //   },
-  //   image: {
-  //     width: "100%",
-  //     height: 200,
-  //   },
-  title: {
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 18,
-    margin: 8,
-    color: "blue",
+  detailsItem: {
+    marginHorizontal: 4,
+    fontSize: 12,
   },
-  //   details: {
-  //     flexDirection: "row",
-  //     alignItems: "center",
-  //     padding: 8,
-  //     justifyContent: "center",
-  //   },
-  //   detailsItem: {
-  //     marginHorizontal: 4,
-  //     fontSize: 14,
-  //   },
-  //   buttenPressed: {
-  //     opacity: 0.5,
-  //   },
 });

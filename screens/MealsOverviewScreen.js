@@ -18,20 +18,18 @@ function MealsOverviewScreen({ route, navigation }) {
   }, [catId, navigation]);
 
   function renderMealItem(itemData) {
-    function pressHandler() {
-        navigation.navigate("DetailsMealScreen", {
-          categoryId: itemData.item.id,
-        });
-      }
+    const item = itemData.item;
+
     const mealItemProps = {
-      title: itemData.item.title,
+      id: item.id,
+      title: item.title,
       //   steps: itemData.item.steps,
-      imageUrl: itemData.item.imageUrl,
-      duration: itemData.item.duration,
-      complexity: itemData.item.complexity,
-      affordability: itemData.item.affordability,
+      imageUrl: item.imageUrl,
+      duration: item.duration,
+      complexity: item.complexity,
+      affordability: item.affordability,
     };
-    return <MeatItem {...mealItemProps} onPress={pressHandler} />;
+    return <MeatItem {...mealItemProps} />;
   }
 
   return (
