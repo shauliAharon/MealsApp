@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
-import DetailsItem from "./DetailsItem";
+import DetailsItem from "../DetailsItem";
 
 function MeatItem({
   title,
