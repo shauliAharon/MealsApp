@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 // import { Ionicons } from "@expo/vector-icons";
-import { Fontisto } from "@expo/vector-icons";
+// import { Fontisto } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
 function FavoriteButton({ icon, onPress, style, color }) {
   return (
     <View style={[styles.iconOuterContainer]}>
@@ -13,7 +14,7 @@ function FavoriteButton({ icon, onPress, style, color }) {
         onPress={onPress}
         // android_ripple={{ color: "white" }}
       >
-        <Fontisto style={[style]} name={icon} size={24} color={color} />
+        <MaterialIcons style={[style]} name={icon} size={24} color={color} />
       </Pressable>
     </View>
   );

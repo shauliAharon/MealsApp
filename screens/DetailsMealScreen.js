@@ -9,21 +9,28 @@ import {
   View,
 } from "react-native";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import DetailsItem from "../components/DetailsItem";
 import SubTitle from "../components/MealDetail/SubTitle";
 import List from "../components/MealDetail/List";
-import PrimaryButton from "../components/PrimaryButton";
-import IconButton from "../components/IconButton";
-import { Fontisto } from "@expo/vector-icons";
+
 import FavoriteButton from "../components/FavoriteButton";
+import { FavoritesContext } from "../store/context/favorites-context";
+
 function DetailsMealScreen({ route, navigation }) {
+  const favoriteMealsCtx = useContext(FavoritesContext);
   const mealId = route.params.mealId;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-  function headerButtonPressHandler() {
-    console.log("top meee");
+  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+
+  function changeFavoritsStatusHandler() {
+    if (mealIsFavorite) {
+      favoriteMealsCtx.removeFavorite(mealId);
+    } else {
+      favoriteMealsCtx.addFavorite(mealId);
+    }
   }
 
   useLayoutEffect(() => {
@@ -31,14 +38,14 @@ function DetailsMealScreen({ route, navigation }) {
       headerRight: () => {
         return (
           <FavoriteButton
-            onPress={headerButtonPressHandler}
-            icon="favorite"
+            onPress={changeFavoritsStatusHandler}
+            icon={mealIsFavorite ? "favorite" : "favorite-outline"}
             color="white"
           ></FavoriteButton>
         );
       },
     });
-  }, [navigation, headerButtonPressHandler]);
+  }, [navigation, changeFavoritsStatusHandler]);
 
   return (
     <ScrollView style={styles.container}>
