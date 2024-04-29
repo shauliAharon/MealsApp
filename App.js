@@ -64,8 +64,8 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <FavoriteContextProvider>
-      {/* <Provider store={store}> */}
+      {/* <FavoriteContextProvider> */}
+      <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="MealsCategories"
@@ -103,8 +103,8 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      {/* </Provider> */}
-      </FavoriteContextProvider>
+      </Provider>
+      {/* </FavoriteContextProvider> */}
     </>
   );
 }

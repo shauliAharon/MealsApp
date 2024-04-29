@@ -13,25 +13,39 @@ import { useContext, useLayoutEffect } from "react";
 import DetailsItem from "../components/DetailsItem";
 import SubTitle from "../components/MealDetail/SubTitle";
 import List from "../components/MealDetail/List";
-
+import { addFavorite, removeFavorite } from "../store/redux/favorites";
 import FavoriteButton from "../components/FavoriteButton";
-import { FavoritesContext } from "../store/context/favorites-context";
+import { useDispatch, useSelector } from "react-redux";
+// import { FavoritesContext } from "../store/context/favorites-context";
 
 function DetailsMealScreen({ route, navigation }) {
-  const favoriteMealsCtx = useContext(FavoritesContext);
+  // const favoriteMealsCtx = useContext(FavoritesContext);
+  const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
+
+  const dispatch = useDispatch();
+
   const mealId = route.params.mealId;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+  const mealIsFavorite = favoriteMealIds.includes(mealId);
 
   function changeFavoritsStatusHandler() {
     if (mealIsFavorite) {
-      favoriteMealsCtx.removeFavorite(mealId);
+      dispatch(removeFavorite({ id: mealId }));
     } else {
-      favoriteMealsCtx.addFavorite(mealId);
+      dispatch(addFavorite({ id: mealId }));
     }
   }
+  // const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+
+  // function changeFavoritsStatusHandler() {
+  //   if (mealIsFavorite) {
+  //     favoriteMealsCtx.removeFavorite(mealId);
+  //   } else {
+  //     favoriteMealsCtx.addFavorite(mealId);
+  //   }
+  // }
 
   useLayoutEffect(() => {
     navigation.setOptions({
