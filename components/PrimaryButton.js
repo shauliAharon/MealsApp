@@ -17,6 +17,7 @@ function PrimaryButton({ children, onPress, style }) {
     </View>
   );
 }
+export default PrimaryButton;
 const styles = StyleSheet.create({
   buttonOuterContainer: {
     borderRadius: 28,
@@ -37,4 +38,3 @@ const styles = StyleSheet.create({
     opacity: 0.75,
   },
 });
-export default PrimaryButton;

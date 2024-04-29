@@ -2,6 +2,7 @@ import {
   Button,
   FlatList,
   Image,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,7 +14,9 @@ import DetailsItem from "../components/DetailsItem";
 import SubTitle from "../components/MealDetail/SubTitle";
 import List from "../components/MealDetail/List";
 import PrimaryButton from "../components/PrimaryButton";
-
+import IconButton from "../components/IconButton";
+import { Fontisto } from "@expo/vector-icons";
+import FavoriteButton from "../components/FavoriteButton";
 function DetailsMealScreen({ route, navigation }) {
   const mealId = route.params.mealId;
 
@@ -26,7 +29,13 @@ function DetailsMealScreen({ route, navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <PrimaryButton onPress={headerButtonPressHandler}>Top me!</PrimaryButton>;
+        return (
+          <FavoriteButton
+            onPress={headerButtonPressHandler}
+            icon="favorite"
+            color="white"
+          ></FavoriteButton>
+        );
       },
     });
   }, [navigation, headerButtonPressHandler]);
@@ -76,5 +85,19 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     width: "80%",
+  },
+  iconOuterContainer: {
+    borderRadius: 28,
+    margin: 4,
+    overflow: "hidden",
+  },
+  iconInnerContainer: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    elevation: 2,
+  },
+
+  pressed: {
+    opacity: 0.75,
   },
 });
